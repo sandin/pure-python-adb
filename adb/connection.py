@@ -86,7 +86,7 @@ class Connection:
     def _check_status(self):
         recv = self._recv(4).decode('utf-8')
         if recv != Protocol.OKAY:
-            error = self._recv(1024).decode('utf-8')
+            error = self.receive()
             raise RuntimeError("ERROR: {} {}".format(repr(recv), error))
 
         return True
