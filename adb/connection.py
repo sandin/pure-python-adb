@@ -6,6 +6,13 @@ from adb.utils import logger
 
 logger = logger.get_logger(__name__)
 
+class DummyConnection:
+    def __enter__(self, *args, **kwargs):
+        raise NotImplementedError
+    def __exit__(self, *args, **kwargs):
+        raise NotImplementedError
+    def send(self, *args, **kwargs):
+        raise NotImplementedError
 
 class Connection:
     def __init__(self, host='localhost', port=5037, timeout=None):

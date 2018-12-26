@@ -1,6 +1,6 @@
-from adb.connection import Connection
+from adb.connection import DummyConnection
 
 
 class Command:
     def create_connection(self, *args, **kwargs):
-        return None
+        return DummyConnection()

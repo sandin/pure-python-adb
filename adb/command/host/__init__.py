@@ -1,6 +1,8 @@
 from adb.device import Device
 from adb.command import Command
-
+from adb.tracker import Tracker
+from adb.parser import Parser, UnexpectedDataError
+from adb.protocol import Protocol
 
 class Host(Command):
     CONNECT_RESULT_PATTERN = "(connected to|already connected)"
@@ -42,3 +44,11 @@ class Host(Command):
             conn.send("host:kill")
 
         return True
+
+    def trackdevices(self, cb):
+        conn = self.create_connection()
+        parser = Parser(conn)
+        conn.send("host:track-devices")
+        Tracker(parser, cb)
+
+        
