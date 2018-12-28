@@ -33,9 +33,12 @@ class Device(Transport, Serial, Input, Utils, WM, Traffic, Stat):
     INSTALL_RESULT_PATTERN = "(Success|Failure|Error)\s?(.*)"
     UNINSTALL_RESULT_PATTERN = "(Success|Failure.*|.*Unknown package:.*)"
 
-    def __init__(self, client, serial):
+    def __init__(self, client, serial, model=None, path=None):
         self.client = client
         self.serial = serial
+        self.model = model
+        self.path = path
+        self.device_name = "{model}({serial})".format(model=model, serial=serial)
 
     def create_connection(self, set_transport=True, timeout=None):
         conn = self.client.create_connection(timeout=timeout)
@@ -122,3 +125,6 @@ class Device(Transport, Serial, Input, Utils, WM, Traffic, Stat):
         else:
             logger.error("There is no message after uninstalling")
             return False
+
+    def __str__(self):
+        return self.device_name
