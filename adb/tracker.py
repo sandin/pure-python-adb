@@ -1,11 +1,24 @@
 from threading import Thread
 from adb import PrematureEOFError
+import logging
+from functools import wraps
+
+
+def cb_wrap(cb):
+    @wraps(cb)
+    def wrap(*largs, **kwargs):
+        try:
+            return cb(*largs, **kwargs)
+        except:
+            logging.exception("(in tracker callback)")
+    return wrap
+
 
 class Tracker:
 
     def __init__(self, parser, cb):
         self.parser = parser
-        self.cb = cb
+        self.cb = cb_wrap(cb)
         self.devices = set()
         thread = Thread(target=self._readdevices_loop, name="Tracker")
         thread.setDaemon(True)
