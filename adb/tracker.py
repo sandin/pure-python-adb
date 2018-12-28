@@ -1,5 +1,5 @@
 from threading import Thread
-from adb.parser import PrematureEOFError
+from adb import PrematureEOFError
 
 class Tracker:
 

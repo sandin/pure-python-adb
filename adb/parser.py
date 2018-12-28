@@ -1,13 +1,6 @@
 from adb.protocol import Protocol
+from adb import PrematureEOFError, FailError
 
-class FailError(Exception):
-    pass
-
-class PrematureEOFError(Exception):
-    pass
-
-class UnexpectedDataError(Exception):
-    pass
 
 class Parser:
 

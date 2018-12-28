@@ -3,6 +3,7 @@ import socket
 
 from adb.protocol import Protocol
 from adb.utils import logger
+from adb import FailError, AdbConnectionError
 
 logger = logger.get_logger(__name__)
 
@@ -42,7 +43,7 @@ class Connection:
         try:
             self.socket.connect((self.host, self.port))
         except socket.error as e:
-            raise RuntimeError("ERROR: connecting to {}:{} {}.\nIs adb running on your computer?".format(
+            raise AdbConnectionError("ERROR: connecting to {}:{} {}.\nIs adb running on your computer?".format(
                 self.host,
                 self.port,
                 e
@@ -87,7 +88,7 @@ class Connection:
         recv = self._recv(4).decode('utf-8')
         if recv != Protocol.OKAY:
             error = self.receive()
-            raise RuntimeError("ERROR: {} {}".format(repr(recv), error))
+            raise FailError("ERROR: {} {}".format(repr(recv), error))
 
         return True
 

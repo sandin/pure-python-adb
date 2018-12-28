@@ -5,6 +5,7 @@ from adb import ClearError
 from adb.command import Command
 
 from adb.utils.logger import get_logger
+from adb import UnexpectedDataError
 
 logger = get_logger(__name__)
 
@@ -186,7 +187,7 @@ class Transport(Command):
             if "restarting adbd as root" in result:
                 return True
             else:
-                raise RuntimeError(result.strip())
+                raise UnexpectedDataError(result.strip())
 
     def wait_boot_complete(self, timeout=60, timedelta=1):
         cmd = 'getprop sys.boot_completed'

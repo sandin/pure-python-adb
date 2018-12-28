@@ -1,4 +1,4 @@
-__version__ = "0.1.5-dev"
+__version__ = "0.1.6-dev"
 
 class InstallError(Exception):
     def __init__(self, path, error):
@@ -8,3 +8,15 @@ class InstallError(Exception):
 class ClearError(Exception):
     def __init__(self, package, error):
         super(ClearError, self).__init__("Package {} could not be cleared - [{}]".format(package, error))
+
+class FailError(Exception):
+    pass
+
+class PrematureEOFError(Exception):
+    pass
+
+class UnexpectedDataError(Exception):
+    pass
+
+class AdbConnectionError(Exception):
+    pass

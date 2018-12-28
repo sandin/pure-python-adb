@@ -1,7 +1,8 @@
 from adb.device import Device
 from adb.command import Command
 from adb.tracker import Tracker
-from adb.parser import Parser, UnexpectedDataError
+from adb.parser import Parser
+from adb import UnexpectedDataError
 from adb.protocol import Protocol
 import re
 
