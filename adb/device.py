@@ -30,8 +30,8 @@ except ImportError:
 
 
 class Device(Transport, Serial, Input, Utils, WM, Traffic, Stat):
-    INSTALL_RESULT_PATTERN = "(Success|Failure|Error)\s?(.*)"
-    UNINSTALL_RESULT_PATTERN = "(Success|Failure.*|.*Unknown package:.*)"
+    INSTALL_RESULT_PATTERN = r"(Success|Failure|Error)\s?(.*)"
+    UNINSTALL_RESULT_PATTERN = r"(Success|Failure.*|.*Unknown package:.*)"
 
     def __init__(self, client, serial, model=None, path=None):
         self.client = client
