@@ -1,1 +1,2 @@
 pytest
+logcat-parser==0.2.4

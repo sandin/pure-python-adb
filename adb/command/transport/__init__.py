@@ -3,6 +3,7 @@ import time
 
 from adb import ClearError
 from adb.command import Command
+from adb.logcat import Logcat
 
 from adb.utils.logger import get_logger
 from adb import UnexpectedDataError
@@ -208,3 +209,12 @@ class Transport(Command):
                 raise TimeoutError()
             elif timedelta > 0:
                 time.sleep(timedelta)
+
+    def open_logcat(self, cb, clear=False):
+        def logcat_handler(conn):
+          Logcat(conn, cb)
+
+        cmd = 'logcat -B *:I 2>/dev/null'
+        if clear:
+          cmd = "logcat -c 2>/dev/null && {}".format(cmd)
+        self.shell(cmd, logcat_handler)

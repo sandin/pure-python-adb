@@ -22,7 +22,7 @@ classifiers = [
 
 setup(
     name='pure-python-adb',
-    version="0.1.6-dev",
+    version="0.1.7-dev",
     description='Pure python implementation of the adb client',
     long_description=readme + '\n\n' + history,
     author='Swind Ou',
@@ -30,7 +30,9 @@ setup(
     url="https://github.com/Swind/pure-python-adb",
     license='MIT license',
     packages=find_packages(exclude=["*.test", "*.test.*", "test.*", "test"]),
-    install_requires=[],
+    install_requires=[
+      'logcat-parser==0.2.4'
+    ],
     keywords="adb",
     classifiers=classifiers,
 )

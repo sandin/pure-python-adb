@@ -18,7 +18,6 @@ class Client(Host):
 
     def device(self, serial):
         devices = self.devices()
-
         for device in devices:
             if device.serial == serial:
                 return device
