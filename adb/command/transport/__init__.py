@@ -218,3 +218,19 @@ class Transport(Command):
         if clear:
           cmd = "logcat -c 2>/dev/null && {}".format(cmd)
         self.shell(cmd, logcat_handler)
+        
+    def tcpip(self, port):
+        cmd = "tcpip:{port}".format(
+            port=port
+        )
+        conn = self.create_connection()
+        with conn:
+            conn.send(cmd)
+            return True, conn.read_all()
+        
+    def usb(self):
+        cmd = "usb:"
+        conn = self.create_connection()
+        with conn:
+            conn.send(cmd)
+            return True, conn.read_all()

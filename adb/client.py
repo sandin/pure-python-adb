@@ -21,5 +21,4 @@ class Client(Host):
         for device in devices:
             if device.serial == serial:
                 return device
-
         return None

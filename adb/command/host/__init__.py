@@ -68,6 +68,14 @@ class Host(Command):
         conn.send("host:track-devices")
         Tracker(parser, cb)
 
-
-        
-        
+    def connect(self, host, port):
+        cmd = "host:connect:{host}:{port}".format(host=host, port=port)
+        with self.create_connection() as conn:
+            conn.send(cmd)
+            return True, conn.receive()
+            
+    def disconnect(self, host, port):
+        cmd = "host:disconnect:{host}:{port}".format(host=host, port=port)
+        with self.create_connection() as conn:
+            conn.send(cmd)
+            return True, conn.receive()
