@@ -38,7 +38,7 @@ class Host(Command):
         for line in result.split('\n'):
             # 8e72a06b               device product:dipper model:MI_8 device:dipper
             # print(line)
-            matched = re.match(r'(?P<serial>[\w\d.:]+)\s+(?P<path>.*model:(?P<model>[\S]+).*)', line)
+            matched = re.match(r'(?P<serial>[\w\d\-.:]+)\s+(?P<path>.*model:(?P<model>[\S]+).*)', line)
             if not matched: continue
             groupdict = matched.groupdict()
             devices.append(Device(self, groupdict['serial'], model=groupdict['model'], path=groupdict['path']))
