@@ -85,8 +85,7 @@ class ProcessCPUStat:
 
 
 class Stat(Plugin):
-    total_cpu_pattern = re.compile(
-        "cpu\s+([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)\s")
+    total_cpu_pattern = re.compile(r"cpu\s+(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)\s")
 
     def get_total_cpu(self):
         result = self.shell('cat /proc/stat')

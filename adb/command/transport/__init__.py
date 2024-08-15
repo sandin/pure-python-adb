@@ -94,7 +94,7 @@ class Transport(Command):
 
     def get_properties(self):
         result = self.shell("getprop")
-        result_pattern = "^\[([\s\S]*?)\]: \[([\s\S]*?)\]\r?$"
+        result_pattern = r"^\[([\s\S]*?)\]: \[([\s\S]*?)\]\r?$"
 
         properties = {}
         for line in result.split('\n'):
